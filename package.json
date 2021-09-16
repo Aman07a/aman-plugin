@@ -1,0 +1,28 @@
+{
+  "name": "aman-plugin",
+  "version": "1.0.0",
+  "description": "Awesome starter plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aman07a/aman-plugin.git"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "PHP",
+    "composer",
+    "gulp",
+    "es6",
+    "scss"
+  ],
+  "author": "Aman Ahmed",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Aman07a/aman-plugin/issues"
+  },
+  "homepage": "https://github.com/Aman07a/aman-plugin#readme"
+}
