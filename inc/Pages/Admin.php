@@ -32,6 +32,10 @@ class Admin extends BaseController
         $this->setPages();
         $this->setSubpages();
 
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
+
         $this->settings
             ->addPages($this->pages)
             ->withSubPage('Dashboard')
@@ -84,5 +88,66 @@ class Admin extends BaseController
                 'callback' => array($this->callbacks, 'adminWidget'),
             ),
         );
+    }
+
+    public function setSettings()
+    {
+        $args = array(
+            array(
+                'option_group' => 'aman_options_group',
+                'option_name' => 'test.example',
+                'callback' => array($this->callbacks, 'amanOptionsGroup'),
+            ),
+            array(
+                'option_group' => 'aman_options_group',
+                'option_name' => 'first_name',
+            )
+        );
+
+        $this->settings->setSettings($args);
+    }
+
+    public function setSections()
+    {
+        $args = array(
+            array(
+                'id' => 'aman_admin_index',
+                'title' => 'Settings',
+                'callback' => array($this->callbacks, 'amanAdminSection'),
+                'page' => 'aman_plugin',
+            )
+        );
+
+        $this->settings->setSections($args);
+    }
+
+    public function setFields()
+    {
+        $args = array(
+            array(
+                'id' => 'text_example',
+                'title' => 'Text Example',
+                'callback' => array($this->callbacks, 'amanTextExample'),
+                'page' => 'aman_plugin',
+                'section' => 'aman_admin_index',
+                'args' => array(
+                    'label_for' => 'text_example',
+                    'class' => 'example-class'
+                )
+            ),
+            array(
+                'id' => 'first_name',
+                'title' => 'First Name',
+                'callback' => array($this->callbacks, 'amanFirstName'),
+                'page' => 'aman_plugin',
+                'section' => 'aman_admin_index',
+                'args' => array(
+                    'label_for' => 'first_name',
+                    'class' => 'example-class'
+                )
+            )
+        );
+
+        $this->settings->setFields($args);
     }
 }
