@@ -15,7 +15,7 @@ use Inc\Api\Callbacks\ManagerCallbacks;
  * Admin
  */
 
-class Admin extends BaseController
+class Dashboard extends BaseController
 {
     public $settings;
 
@@ -24,7 +24,7 @@ class Admin extends BaseController
 
     public $pages = array();
 
-    public $subpages = array();
+    // public $subpages = array();
 
     public function register()
     {
@@ -33,7 +33,7 @@ class Admin extends BaseController
         $this->callbacks_mngr = new ManagerCallbacks();
 
         $this->setPages();
-        $this->setSubpages();
+        // $this->setSubpages();
 
         $this->setSettings();
         $this->setSections();
@@ -42,7 +42,7 @@ class Admin extends BaseController
         $this->settings
             ->addPages($this->pages)
             ->withSubPage('Dashboard')
-            ->addSubPages($this->subpages)
+            // ->addSubPages($this->subpages)
             ->register();
     }
 
@@ -62,48 +62,54 @@ class Admin extends BaseController
         );
     }
 
-    public function setSubpages()
-    {
-        // Sub Pages
-        $this->subpages = array(
-            array(
-                'parent_slug' => 'aman_plugin',
-                'page_title' =>  'Custom Post Types',
-                'menu_title' => 'CPT',
-                'capability' => 'manage_options',
-                'menu_slug' => 'aman_cpt',
-                'callback' => array($this->callbacks, 'adminCpt'),
-            ),
-            array(
-                'parent_slug' => 'aman_plugin',
-                'page_title' =>  'Custom Taxonomies',
-                'menu_title' => 'Taxonomies',
-                'capability' => 'manage_options',
-                'menu_slug' => 'aman_taxonomies',
-                'callback' => array($this->callbacks, 'adminTaxonomy'),
-            ),
-            array(
-                'parent_slug' => 'aman_plugin',
-                'page_title' =>  'Custom Widgets',
-                'menu_title' => 'Widgets',
-                'capability' => 'manage_options',
-                'menu_slug' => 'aman_widgets',
-                'callback' => array($this->callbacks, 'adminWidget'),
-            ),
-        );
-    }
+    // public function setSubpages()
+    // {
+    //     // Sub Pages
+    //     $this->subpages = array(
+    //         array(
+    //             'parent_slug' => 'aman_plugin',
+    //             'page_title' =>  'Custom Post Types',
+    //             'menu_title' => 'CPT',
+    //             'capability' => 'manage_options',
+    //             'menu_slug' => 'aman_cpt',
+    //             'callback' => array($this->callbacks, 'adminCpt'),
+    //         ),
+    //         array(
+    //             'parent_slug' => 'aman_plugin',
+    //             'page_title' =>  'Custom Taxonomies',
+    //             'menu_title' => 'Taxonomies',
+    //             'capability' => 'manage_options',
+    //             'menu_slug' => 'aman_taxonomies',
+    //             'callback' => array($this->callbacks, 'adminTaxonomy'),
+    //         ),
+    //         array(
+    //             'parent_slug' => 'aman_plugin',
+    //             'page_title' =>  'Custom Widgets',
+    //             'menu_title' => 'Widgets',
+    //             'capability' => 'manage_options',
+    //             'menu_slug' => 'aman_widgets',
+    //             'callback' => array($this->callbacks, 'adminWidget'),
+    //         ),
+    //     );
+    // }
 
     public function setSettings()
     {
-        $args = array();
-
-        foreach ($this->managers as $key => $value) {
-            $args[] = array(
+        $args = array(
+            array(
                 'option_group' => 'aman_plugin_settings',
-                'option_name' => $key,
+                'option_name' => 'aman_plugin',
                 'callback' => array($this->callbacks_mngr, 'checkboxSanitize'),
-            );
-        }
+            )
+        );
+
+        // foreach ($this->managers as $key => $value) {
+        //     $args[] = array(
+        //         'option_group' => 'aman_plugin_settings',
+        //         'option_name' => $key,
+        //         'callback' => array($this->callbacks_mngr, 'checkboxSanitize'),
+        //     );
+        // }
 
         $this->settings->setSettings($args);
     }
@@ -135,6 +141,7 @@ class Admin extends BaseController
                 'page' => 'aman_plugin',
                 'section' => 'aman_admin_index',
                 'args' => array(
+                    'option_name' => 'aman_plugin',
                     'label_for' => $key,
                     'class' => 'ui-toggle'
                 )
