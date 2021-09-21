@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Aman07a/aman-plugin/issues"
   },
-  "homepage": "https://github.com/Aman07a/aman-plugin#readme"
+  "homepage": "https://github.com/Aman07a/aman-plugin#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
