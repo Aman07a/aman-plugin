@@ -8,12 +8,11 @@ namespace Inc\Base;
 
 use Inc\Api\SettingsApi;
 use Inc\Base\BaseController;
-use Inc\Api\Callbacks\AdminCallbacks;
 
 /**
  * 
  */
-class CustomPostTypeController extends BaseController
+class CustomTaxonomyController extends BaseController
 {
     public $callbacks;
 
@@ -22,7 +21,7 @@ class CustomPostTypeController extends BaseController
     public function register()
     {
         $option = get_option('aman_plugin');
-        $activated = isset($option['cpt_manager']) ? ($option['cpt_manager']) : false;
+        $activated = isset($option['taxonomy_manager']) ? ($option['taxonomy_manager']) : false;
 
         if (!$activated) return;
 
@@ -35,28 +34,13 @@ class CustomPostTypeController extends BaseController
         add_action('init', array($this, 'activate'));
     }
 
-    public function activate()
-    {
-        register_post_type(
-            'aman_products',
-            array(
-                'labels' =>  array(
-                    'name' => 'Products',
-                    'singular_name' => 'Product'
-                ),
-                'public' => true,
-                'has_archive' => true
-            )
-        );
-    }
-
     public function setSubpages()
     {
         $this->subpages = array(
             array(
                 'parent_slug' => 'aman_plugin',
-                'page_title' =>  'Custom Post Types',
-                'menu_title' => 'CPT Manager',
+                'page_title' =>  'Taxonomy',
+                'menu_title' => 'Taxonomy Manager',
                 'capability' => 'manage_options',
                 'menu_slug' => 'aman_cpt',
                 'callback' => array($this->callbacks, 'adminCpt'),

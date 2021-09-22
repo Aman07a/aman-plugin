@@ -30,25 +30,45 @@ class AdminCallbacks extends BaseController
         return require_once("$this->plugin_path/templates/widget.php");
     }
 
-    // public function amanOptionsGroup($input)
-    // {
-    //     return $input;
-    // }
-
-    // public function amanAdminSection()
-    // {
-    //     echo 'Check this beautifull section!';
-    // }
-
-    public function amanTextExample()
+    public function adminGallery()
     {
-        $value = esc_attr(get_option('text_example'));
-        echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write Something Here!">';
+        echo "<h1>Gallery Manager</h1>";
     }
 
-    public function amanFirstName()
+    public function adminTestimonial()
     {
-        $value = esc_attr(get_option('first_name'));
-        echo '<input type="text" class="regular-text" name="first_name" value="' . $value . '" placeholder="Write your First Name">';
+        echo "<h1>Testimonial Manager</h1>";
     }
+
+    public function adminTemplates()
+    {
+        echo "<h1>Templates Manager</h1>";
+    }
+
+    public function adminAuth()
+    {
+        echo "<h1>Templates Manager</h1>";
+    }
+
+    public function adminMembership()
+    {
+        echo "<h1>Membership Manager</h1>";
+    }
+
+    public function adminChat()
+    {
+        echo "<h1>Chat Manager</h1>";
+    }
+
+    // public function amanTextExample()
+    // {
+    //     $value = esc_attr(get_option('text_example'));
+    //     echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write Something Here!">';
+    // }
+
+    // public function amanFirstName()
+    // {
+    //     $value = esc_attr(get_option('first_name'));
+    //     echo '<input type="text" class="regular-text" name="first_name" value="' . $value . '" placeholder="Write your First Name">';
+    // }
 }
