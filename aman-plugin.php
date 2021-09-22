@@ -48,6 +48,7 @@ function activate_aman_plugin()
 {
     Inc\Base\Activate::activate();
 }
+register_activation_hook(__FILE__, 'activate_aman_plugin');
 
 /**
  * The code that runs during plugin deactivation
@@ -60,7 +61,7 @@ function deactivate_aman_plugin()
 register_deactivation_hook(__FILE__, 'deactivate_aman_plugin');
 
 /**
- * Initialize all the core classes of the pluggin
+ * Initialize all the core classes of the plugin
  */
 if (class_exists('Inc\\Init')) {
     Inc\Init::register_services();

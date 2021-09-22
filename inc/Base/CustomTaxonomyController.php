@@ -6,6 +6,7 @@
 
 namespace Inc\Base;
 
+use Inc\Api\Callbacks\AdminCallbacks;
 use Inc\Api\SettingsApi;
 use Inc\Base\BaseController;
 
@@ -20,18 +21,19 @@ class CustomTaxonomyController extends BaseController
 
     public function register()
     {
-        $option = get_option('aman_plugin');
-        $activated = isset($option['taxonomy_manager']) ? ($option['taxonomy_manager']) : false;
+        // $option = get_option('aman_plugin');
+        // $activated = isset($option['taxonomy_manager']) ? ($option['taxonomy_manager']) : false;
 
-        if (!$activated) return;
+        if (!$this->activated('taxonomy_manager')) return;
 
         $this->settings = new SettingsApi();
+        $this->callbacks = new AdminCallbacks();
 
         $this->setSubpages();
 
         $this->settings->addSubPages($this->subpages)->register();
 
-        add_action('init', array($this, 'activate'));
+        // add_action('init', array($this, 'activate'));
     }
 
     public function setSubpages()
@@ -39,11 +41,11 @@ class CustomTaxonomyController extends BaseController
         $this->subpages = array(
             array(
                 'parent_slug' => 'aman_plugin',
-                'page_title' =>  'Taxonomy',
+                'page_title' =>  'Custom Taxonomies',
                 'menu_title' => 'Taxonomy Manager',
                 'capability' => 'manage_options',
-                'menu_slug' => 'aman_cpt',
-                'callback' => array($this->callbacks, 'adminCpt'),
+                'menu_slug' => 'aman_taxonomy',
+                'callback' => array($this->callbacks, 'adminTaxonomy'),
             )
         );
     }

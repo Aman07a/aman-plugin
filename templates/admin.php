@@ -1,6 +1,6 @@
 <div class="wrap">
     <h1>Aman Plugin</h1>
-    <?php settings_errors() ?>
+    <?php settings_errors(); ?>
 
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab-1">Manage Settings</a></li>

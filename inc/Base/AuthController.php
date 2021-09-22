@@ -6,13 +6,14 @@
 
 namespace Inc\Base;
 
-use Inc\Api\Callbacks\AdminCallbacks;
 use Inc\Api\SettingsApi;
+use Inc\Base\BaseController;
+use Inc\Api\Callbacks\AdminCallbacks;
 
 /**
  * 
  */
-class AuthController
+class AuthController extends BaseController
 {
     public $callbacks;
 

@@ -12,7 +12,7 @@ use Inc\Api\Callbacks\AdminCallbacks;
 use Inc\Api\Callbacks\ManagerCallbacks;
 
 /**
- * Admin
+ * Dashboard
  */
 
 class Dashboard extends BaseController
@@ -20,6 +20,7 @@ class Dashboard extends BaseController
     public $settings;
 
     public $callbacks;
+
     public $callbacks_mngr;
 
     public $pages = array();
