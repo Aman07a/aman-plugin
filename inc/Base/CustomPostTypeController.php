@@ -21,18 +21,33 @@ class CustomPostTypeController extends BaseController
 
     public function register()
     {
-        $option = get_option('aman_plugin');
-        $activated = isset($option['cpt_manager']) ? ($option['cpt_manager']) : false;
+        // $option = get_option('aman_plugin');
+        // $activated = isset($option['cpt_manager']) ? ($option['cpt_manager']) : false;
 
-        if (!$activated) return;
+        if (!$this->activated('cpt_manager')) return;
 
         $this->settings = new SettingsApi();
+        $this->callbacks = new AdminCallbacks();
 
         $this->setSubpages();
 
         $this->settings->addSubPages($this->subpages)->register();
 
         add_action('init', array($this, 'activate'));
+    }
+
+    public function setSubpages()
+    {
+        $this->subpages = array(
+            array(
+                'parent_slug' => 'aman_plugin',
+                'page_title' =>  'Custom Post Types',
+                'menu_title' => 'CPT Manager',
+                'capability' => 'manage_options',
+                'menu_slug' => 'aman_cpt',
+                'callback' => array($this->callbacks, 'adminCpt'),
+            )
+        );
     }
 
     public function activate()
@@ -46,20 +61,6 @@ class CustomPostTypeController extends BaseController
                 ),
                 'public' => true,
                 'has_archive' => true
-            )
-        );
-    }
-
-    public function setSubpages()
-    {
-        $this->subpages = array(
-            array(
-                'parent_slug' => 'aman_plugin',
-                'page_title' =>  'Custom Post Types',
-                'menu_title' => 'CPT Manager',
-                'capability' => 'manage_options',
-                'menu_slug' => 'aman_cpt',
-                'callback' => array($this->callbacks, 'adminCpt'),
             )
         );
     }

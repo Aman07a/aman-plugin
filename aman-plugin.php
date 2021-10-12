@@ -7,7 +7,7 @@
 /*
 Plugin Name: Aman Plugin
 PLugin URI: http://aman-ahmed-website.local/plugin
-Description: This is my first attempt on writing a custom Plugin
+Description: This is my first attempt on writing a custom Plugin | Theme: Twenty Seventeen
 Version: 1.0
 Author: Aman Ahmed
 Author URI: http://aman-ahmed-website.local/
@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 Copyright 2005-2015 Automatic, Inc.
 */
 
-// If this file is called firectly, abort!!!
+// If this file is called correctly, abort!!!
 defined('ABSPATH') or die('Hey, you can\t access this file, you silly human!');
 
 // Require once the Composer Autoload
